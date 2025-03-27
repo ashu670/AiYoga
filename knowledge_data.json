@@ -1,0 +1,49 @@
+{
+    "yoga_questions": [
+        {
+            "question": "What is yoga?",
+            "responses": [
+                "Yoga is an ancient practice that unites mind and body through breath, movement, and meditation.",
+                "Yoga originated in India and combines physical postures, breathing exercises, and mindfulness.",
+                "The practice of yoga helps improve flexibility, strength, and mental well-being.",
+                "Yoga is both a spiritual and physical discipline that promotes holistic health."
+            ]
+        },
+        {
+            "question": "What are the benefits of yoga?",
+            "responses": [
+                "Yoga enhances flexibility, strength, and mental clarity.",
+                "Practicing yoga regularly can reduce stress, improve posture, and boost immunity.",
+                "Yoga helps in relaxation, improves sleep, and increases focus.",
+                "From reducing anxiety to improving heart health, yoga offers numerous physical and mental benefits."
+            ]
+        },
+        {
+            "question": "What is downward dog pose?",
+            "responses": [
+                "Downward Dog, or Adho Mukha Svanasana, is a foundational yoga pose that stretches the entire body.",
+                "In Downward Dog, your hands and feet are on the ground as your hips lift to form an inverted V shape.",
+                "This pose strengthens the arms, legs, and back while improving circulation.",
+                "A staple of many yoga sequences, Downward Dog helps relieve tension and lengthens the spine."
+            ]
+        },
+        {
+            "question": "How often should I do yoga?",
+            "responses": [
+                "The frequency of yoga depends on your goals, but practicing 3-5 times a week is ideal.",
+                "Even practicing yoga for 15-20 minutes daily can provide significant benefits.",
+                "Beginners can start with 2-3 sessions per week and gradually increase.",
+                "Yoga is most effective when practiced consistently, even in short sessions."
+            ]
+        },
+        {
+            "question": "What is the best time to do yoga?",
+            "responses": [
+                "Morning yoga helps energize the body, while evening yoga aids relaxation and sleep.",
+                "Yoga can be practiced at any time of day, but doing it on an empty stomach is best.",
+                "Early morning yoga aligns with traditional practices and is great for mindfulness.",
+                "Choose a time that fits your schedule\u00e2\u20ac\u201dconsistency matters more than timing."
+            ]
+        }
+    ]
+}

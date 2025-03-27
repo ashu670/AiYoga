@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Yoga Instructor</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        input, button { margin: 10px; padding: 10px; }
+        #chatbox { width: 80%; height: 300px; border: 1px solid #ccc; padding: 10px; overflow-y: scroll; margin: 0 auto; }
+        #poseFeedback { font-size: 18px; }
+        #poseImage { max-width: 300px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>🧘 AI Yoga Instructor</h1>
+
+    <!-- Pose Correction Upload -->
+    <h3>📸 Upload Your Pose for Correction</h3>
+    <input type="file" id="imageUpload" accept="image/*">
+    <button onclick="uploadImage()">Check Pose</button>
+    <p id="poseFeedback"></p>
+    <img id="poseImage" style="display:none;">
+
+    <!-- Chatbot Section -->
+    <h3>💬 Chat with AI Yoga Instructor</h3>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput" placeholder="Ask about yoga..." onkeypress="if(event.key === 'Enter') sendMessage()">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        // Upload Image for Pose Correction
+        function uploadImage() {
+            let fileInput = document.getElementById("imageUpload");
+            let file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please select an image first!");
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("file", file);
+
+            fetch("/pose", { method: "POST", body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("poseFeedback").innerText = data.feedback || "Error occurred.";
+                    let poseImage = document.getElementById("poseImage");
+                    if (data.image) {
+                        poseImage.src = data.image;
+                        poseImage.style.display = "block";
+                    } else {
+                        poseImage.style.display = "none";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("poseFeedback").innerText = "Error processing image.";
+                });
+        }
+
+        // Chatbot Interaction
+        function sendMessage() {
+            let userInput = document.getElementById("userInput").value; // Correct variable name
+            let chatbox = document.getElementById("chatbox");
+
+            if (!userInput.trim()) {
+                alert("Enter a question!");
+                return;
+            }
+
+            chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+
+            fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userInput }) // Fixed: userInput instead of user_input
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatbox.innerHTML += `<p><strong>AI:</strong> ${data.response}</p>`;
+                document.getElementById("userInput").value = "";
+                chatbox.scrollTop = chatbox.scrollHeight;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                chatbox.innerHTML += `<p><strong>AI:</strong> Oops, something went wrong!</p>`;
+            });
+        }
+    </script>
+
+</body>
+</html>
